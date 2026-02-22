@@ -1,0 +1,5 @@
+FROM oven/bun:1
+WORKDIR /work
+COPY integration/docker/mock-wikipedia-server.ts .
+CMD ["bun", "run", "mock-wikipedia-server.ts"]
+EXPOSE 3000

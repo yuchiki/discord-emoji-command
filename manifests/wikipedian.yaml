@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wikipedian-deployment
+  labels:
+    app: wikipedian
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wikipedian
+  template:
+    metadata:
+      labels:
+        app: wikipedian
+    spec:
+      containers:
+      - name: wikipedian
+        image: ghcr.io/yuchiki/wikipedian
+        env:
+        - name: WIKIPEDIAN_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: wikipedian-secret
+              key: WIKIPEDIAN_TOKEN
+        - name: WIKIPEDIAN_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: wikipedian-secret
+              key: WIKIPEDIAN_CLIENT_ID

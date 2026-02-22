@@ -1,0 +1,31 @@
+services:
+  mock-wikipedia:
+    build:
+      context: .
+      dockerfile: integration/docker/Dockerfile.mock-wikipedia
+    networks:
+      test-net:
+        aliases:
+          - ja.mock-wikipedia
+          - en.mock-wikipedia
+    healthcheck:
+      test: ["CMD", "bun", "-e", "await fetch('http://localhost:3000')"]
+      interval: 2s
+      timeout: 5s
+      retries: 5
+
+  test-runner:
+    build:
+      context: .
+      dockerfile: integration/docker/Dockerfile.test-runner
+    environment:
+      WIKIPEDIA_PROTOCOL: http
+      WIKIPEDIA_HOST: "mock-wikipedia:3000"
+    networks:
+      - test-net
+    depends_on:
+      mock-wikipedia:
+        condition: service_healthy
+
+networks:
+  test-net:

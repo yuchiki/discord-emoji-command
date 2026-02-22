@@ -1,0 +1,10 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+	"name": "Bun",
+	"image": "oven/bun:1",
+	"features": {
+		"ghcr.io/devcontainers/features/aws-cli:1": {},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/docker-from-docker": {}
+	}
+}
