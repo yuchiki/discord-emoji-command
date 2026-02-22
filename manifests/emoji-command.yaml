@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emoji-command-deployment
+  labels:
+    app: emoji-command
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emoji-command
+  template:
+    metadata:
+      labels:
+        app: emoji-command
+    spec:
+      containers:
+      - name: emoji-command
+        image: ghcr.io/yuchiki/discord-emoji-command
+        env:
+        - name: DISCORD_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: emoji-command-secret
+              key: DISCORD_TOKEN
+        - name: DISCORD_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: emoji-command-secret
+              key: DISCORD_CLIENT_ID
