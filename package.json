@@ -1,8 +1,8 @@
 {
   "main": "src/index.ts",
   "scripts": {
-    "start": "bun run src/index.ts",
-    "test": "bun test src/",
+    "start": "FONTCONFIG_FILE=$PWD/fonts/fonts.conf bun run src/index.ts",
+    "test": "FONTCONFIG_FILE=$PWD/fonts/fonts.conf bun test src/",
     "format": "biome format --write src/",
     "lint": "biome lint src/",
     "check": "biome check --write src/",

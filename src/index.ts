@@ -33,7 +33,7 @@ const registerCommands = async (clientId: string, token: string) => {
                 option
                     .setName("color")
                     .setDescription(
-                        "テキストの色 (例: red, #ff0000。デフォルト: white)",
+                        "テキストの色 (例: red, #ff0000。デフォルト: ランダム)",
                     ),
             )
             .addStringOption((option) =>
@@ -66,7 +66,7 @@ const emoji_command = async (
 ) => {
     const text = interaction.options.getString("text", true);
     const name = interaction.options.getString("name", true);
-    const color = interaction.options.getString("color") ?? "white";
+    const color = interaction.options.getString("color") ?? undefined;
     const bg = interaction.options.getString("bg") ?? "transparent";
     const fontSize = interaction.options.getInteger("font-size") ?? undefined;
 
