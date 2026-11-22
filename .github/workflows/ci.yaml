@@ -22,5 +22,5 @@ jobs:
       - uses: oven-sh/setup-bun@3d267786b128fe76c2f16a390aa2448b815359f3 # v2
       - run: bun install --frozen-lockfile
       - run: bun run biome ci src/
-      - run: bun run typecheck
+      - run: bunx --package typescript@7.0.2 tsc --noEmit
       - run: bun run test
